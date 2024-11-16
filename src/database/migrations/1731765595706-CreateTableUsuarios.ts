@@ -4,60 +4,67 @@ import {
   Table,
   TableColumn,
   TableForeignKey,
-} from 'typeorm';
+} from "typeorm";
 
 export class CreateTableUsuarios1731765595706 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'usuarios',
+        name: "USUARIOS",
         columns: [
           new TableColumn({
-            name: 'id',
-            type: 'integer',
-            generationStrategy: 'increment',
+            name: "ID",
+            type: "integer",
+            generationStrategy: "increment",
             isPrimary: true,
           }),
           new TableColumn({
-            name: 'turma_id',
-            type: 'integer',
+            name: "TURMA_ID",
+            type: "integer",
             isNullable: true,
           }),
           new TableColumn({
-            name: 'nome',
-            type: 'varchar',
-            length: '100',
+            name: "NOME",
+            type: "varchar",
+            length: "100",
           }),
           new TableColumn({
-            name: 'email',
-            type: 'varchar',
-            length: '100',
+            name: "EMAIL",
+            type: "varchar",
+            length: "100",
           }),
           new TableColumn({
-            name: 'senha',
-            type: 'varchar',
-            length: '100',
+            name: "SENHA",
+            type: "varchar",
+            length: "100",
           }),
           new TableColumn({
-            name: 'tipo_usuario',
-            type: 'smallserial',
+            name: "SALT_SENHA",
+            type: "varchar",
+            length: "100",
+          }),
+          new TableColumn({
+            name: "TIPO_USUARIO",
+            type: "smallserial",
           }),
         ],
       }),
+      true
     );
 
     await queryRunner.createForeignKey(
-      'usuarios',
+      "USUARIOS",
       new TableForeignKey({
-        columnNames: ['turma_id'],
-        referencedColumnNames: ['id'],
-        referencedTableName: 'turmas',
-        name: 'fk_usuarios_turma',
-      }),
+        columnNames: ["TURMA_ID"],
+        referencedColumnNames: ["ID"],
+        referencedTableName: "TURMAS",
+        name: "FK_USUARIOS_TURMA",
+      })
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('usuarios');
+    await queryRunner.dropForeignKey("USUARIOS", "FK_USUARIOS_TURMA");
+    await queryRunner.dropTable("USUARIOS");
   }
 }
