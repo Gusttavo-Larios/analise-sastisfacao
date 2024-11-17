@@ -1,8 +1,9 @@
+import { ErrorStatusCode } from "../../../../common/enums/status-code.enum";
 import { AbstractError } from "../../../../common/errors/abstract-error.error";
 
 export class UsuarioAlreadyExistsError extends AbstractError {
   constructor(motivo: string, mensagem: string) {
-    super(motivo, mensagem, 422);
+    super(motivo, mensagem, ErrorStatusCode.UNPROCESSABLE_ENTITY);
   }
 
   static fromEmail(email: string) {

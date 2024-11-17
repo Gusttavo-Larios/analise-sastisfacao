@@ -1,9 +1,14 @@
 import "reflect-metadata";
+
 import express, { Request, Response } from "express";
 import cors from "cors";
+
 import { AppDataSource } from "./database/data-source";
 import { errorHandlerMiddleware } from "./common/middlewares/error-handler.middleware";
 import { usuairoRouter } from "./modules/usuarios/adapters/http/usuario.router";
+import { ENVS } from "./common/constants/envs.const";
+import { authenticationRouter } from "./modules/authentication/adapters/http/usuario.router";
+import { authenticationMiddleware } from "./modules/authentication/adapters/http/middlewares/authentication.middleware";
 
 AppDataSource.initialize().then(() => {
   console.log("Conexão com o BD foi iniciada");
@@ -16,6 +21,12 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api", usuairoRouter);
+app.use("/api", authenticationRouter);
+app.use(authenticationMiddleware);
+app.get("/api/teste", (req, res) => {
+  res.json({ ok: "ok" });
+  return;
+});
 
 app.use((request: Request, response: Response) => {
   console.log("app.routes");
@@ -39,6 +50,6 @@ process.on("unhandledRejection", (reason, promise) => {
   // Mas, novamente, não finalizar o processo
 });
 
-app.listen(process.env.PORT, () => {
-  console.log("App rondando na porta: " + process.env.PORT);
+app.listen(ENVS.PORT, () => {
+  console.log("App rondando na porta: " + ENVS.PORT);
 });

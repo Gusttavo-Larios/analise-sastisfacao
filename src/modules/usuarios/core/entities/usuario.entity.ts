@@ -27,6 +27,14 @@ export class Usuario {
   })
   turmaId: number;
 
+  isSameSenha(senha: string) {
+    return CryptoValueObject.compareHashPBKDF2(
+      senha,
+      this.saltSenha,
+      this.senha
+    );
+  }
+
   static createUsuario(nome: string, email: string, senha: string) {
     const usuario = new Usuario();
 
