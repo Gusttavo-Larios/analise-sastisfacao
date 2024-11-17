@@ -1,8 +1,16 @@
-import { Entity, Column, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Entity,
+  Column,
+  PrimaryColumn,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  JoinColumn,
+} from "typeorm";
 import { TipoUsuario } from "../enums/tipo-usuario.enum";
 import { CryptoValueObject } from "../../../../common/value-object/crypto.value-object";
+import { Turma } from "../../../turmas/core/entities/turma.entity";
 
-@Entity("USUARIOS")
+@Entity("usuarios")
 export class Usuario {
   @PrimaryGeneratedColumn()
   id: number;
@@ -16,16 +24,27 @@ export class Usuario {
   @Column()
   senha: string;
 
-  @Column()
+  @Column({
+    name: "salt_senha",
+  })
   saltSenha: string;
 
-  @Column()
+  @Column({
+    name: "tipo_usuario",
+  })
   tipoUsuario: number;
 
   @Column({
     nullable: true,
+    name: "turma_id",
   })
   turmaId: number;
+
+  @JoinColumn({
+    name: "turma_id",
+  })
+  @ManyToOne(() => Turma, (turma) => turma.alunos)
+  turma: Turma;
 
   isSameSenha(senha: string) {
     return CryptoValueObject.compareHashPBKDF2(
@@ -35,7 +54,12 @@ export class Usuario {
     );
   }
 
-  static createUsuario(nome: string, email: string, senha: string) {
+  static createUsuario(
+    nome: string,
+    email: string,
+    senha: string,
+    turmaId: number
+  ) {
     const usuario = new Usuario();
 
     usuario.nome = nome;
@@ -46,6 +70,7 @@ export class Usuario {
       usuario.saltSenha
     );
     usuario.tipoUsuario = TipoUsuario.ADMINISTRADOR;
+    usuario.turmaId = turmaId;
 
     return usuario;
   }

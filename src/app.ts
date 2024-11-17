@@ -9,6 +9,7 @@ import { usuairoRouter } from "./modules/usuarios/adapters/http/usuario.router";
 import { ENVS } from "./common/constants/envs.const";
 import { authenticationRouter } from "./modules/authentication/adapters/http/usuario.router";
 import { authenticationMiddleware } from "./modules/authentication/adapters/http/middlewares/authentication.middleware";
+import { turmaRouter } from "./modules/turmas/adapters/http/turma.router";
 
 AppDataSource.initialize().then(() => {
   console.log("Conexão com o BD foi iniciada");
@@ -22,6 +23,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api", usuairoRouter);
 app.use("/api", authenticationRouter);
+app.use("/api", turmaRouter);
+
 app.use(authenticationMiddleware);
 app.get("/api/teste", (req, res) => {
   res.json({ ok: "ok" });

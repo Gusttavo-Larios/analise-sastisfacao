@@ -18,7 +18,8 @@ Esta é a documentação das rotas da API do projeto de análise de satisfação
 {
   "name": "Nome do usuário",
   "email": "usuario@dominio.com",
-  "senha": "senha-secreta"
+  "senha": "senha-secreta",
+  "turmaId": 0
 }
 ```
 

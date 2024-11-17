@@ -18,7 +18,8 @@ export class CreateUsuarioUseCase {
     const usuarioEntity = Usuario.createUsuario(
       input.nome,
       input.email,
-      input.senha
+      input.senha,
+      input.turmaId
     );
     return this.usuarioRepository.save(usuarioEntity);
   }

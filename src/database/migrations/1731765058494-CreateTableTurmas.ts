@@ -4,26 +4,28 @@ export class CreateTableTurmas1731765058494 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: "TURMAS",
+        name: "turmas",
         columns: [
           new TableColumn({
-            name: "ID",
-            type: "integer",
+            name: "id",
+            type: "serial",
             generationStrategy: "increment",
             isPrimary: true,
           }),
           new TableColumn({
-            name: "NOME",
+            name: "nome",
             type: "varchar",
             length: "100",
           }),
           new TableColumn({
-            name: "ANO",
-            type: "smallserial",
+            name: "ano",
+            type: "smallint",
+            isGenerated: false,
           }),
           new TableColumn({
-            name: "TIPO_CURSO",
-            type: "smallserial",
+            name: "tipo_curso",
+            type: "smallint",
+            isGenerated: false,
           }),
         ],
       })
@@ -31,6 +33,6 @@ export class CreateTableTurmas1731765058494 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable("TURMAS");
+    await queryRunner.dropTable("turmas");
   }
 }

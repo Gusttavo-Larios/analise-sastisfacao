@@ -3,6 +3,7 @@ import { DataSource } from "typeorm";
 
 import { Usuario } from "../modules/usuarios/core/entities/usuario.entity";
 import { ENVS } from "../common/constants/envs.const";
+import { Turma } from "../modules/turmas/core/entities/turma.entity";
 
 export const AppDataSource = new DataSource({
   type: "postgres",
@@ -11,9 +12,9 @@ export const AppDataSource = new DataSource({
   username: ENVS.DB_USER,
   password: ENVS.DB_PASSWORD,
   database: ENVS.DB_NAME,
-  synchronize: true,
+  synchronize: false,
   logging: true,
-  entities: [Usuario],
+  entities: [Usuario, Turma],
   migrations: ["src/database/migrations/**/*{.ts,.js}"],
   subscribers: [],
 });
