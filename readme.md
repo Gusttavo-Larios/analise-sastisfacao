@@ -21,3 +21,20 @@ Esta é a documentação das rotas da API do projeto de análise de satisfação
   "senha": "senha-secreta"
 }
 ```
+
+## Rota 2: Autenticar usuário
+
+**Método HTTP**: `POST`
+
+**Endpoint**: `/api/autenticao/autenticar`
+
+**Descrição**: Autenticar um usuário com as credenciais fornecidas.
+
+### Parâmetros de Requisição (Body):
+
+```json
+{
+  "name": "Nome do usuário",
+  "senha": "senha-secreta"
+}
+```
