@@ -39,3 +39,19 @@ Esta é a documentação das rotas da API do projeto de análise de satisfação
   "senha": "senha-secreta"
 }
 ```
+
+## Rota 3: Listar turmas
+
+**Método HTTP**: `GET`
+
+**Endpoint**: `/api/turmas`
+
+**Descrição**: Buscar todas as turmas.
+
+### Parâmetros de Requisição (Query):
+
+```json
+{
+  "keyword": "palvara-chave"
+}
+```
