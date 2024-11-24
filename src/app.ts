@@ -10,6 +10,7 @@ import { ENVS } from "./common/constants/envs.const";
 import { authenticationRouter } from "./modules/authentication/adapters/http/usuario.router";
 import { authenticationMiddleware } from "./modules/authentication/adapters/http/middlewares/authentication.middleware";
 import { turmaRouter } from "./modules/turmas/adapters/http/turma.router";
+import { questionarioRouter } from "./modules/questionario/adapters/http/questionario.router";
 
 AppDataSource.initialize().then(() => {
   console.log("Conexão com o BD foi iniciada");
@@ -26,14 +27,13 @@ app.use("/api", authenticationRouter);
 app.use("/api", turmaRouter);
 
 app.use(authenticationMiddleware);
+app.use("/api", questionarioRouter);
 app.get("/api/teste", (req, res) => {
   res.json({ ok: "ok" });
   return;
 });
 
 app.use((request: Request, response: Response) => {
-  console.log("app.routes");
-  console.log(app.routes);
   response.status(404).send("Página não encontrada");
 });
 

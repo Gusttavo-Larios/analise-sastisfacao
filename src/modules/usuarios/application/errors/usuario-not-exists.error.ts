@@ -8,8 +8,15 @@ export class UsuarioNotExistsError extends AbstractError {
 
   static fromEmail(email: string) {
     return new UsuarioNotExistsError(
-      "O e-mail informado não existe no banco de dados",
-      `O e-mail ${email} informado não existe no banco de dados`
+      "O e-mail de usuário informado não existe no banco de dados",
+      `O e-mail de usuário ${email} informado não existe no banco de dados`
+    );
+  }
+
+  static fromId(usuarioId: number) {
+    return new UsuarioNotExistsError(
+      "O ID de usuário informado não existe no banco de dados",
+      `O ID de usuário ${usuarioId} informado não existe no banco de dados`
     );
   }
 }

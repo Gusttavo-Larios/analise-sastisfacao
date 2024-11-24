@@ -1,14 +1,15 @@
 import {
   Entity,
   Column,
-  PrimaryColumn,
   PrimaryGeneratedColumn,
   ManyToOne,
   JoinColumn,
+  OneToMany,
 } from "typeorm";
 import { TipoUsuario } from "../enums/tipo-usuario.enum";
 import { CryptoValueObject } from "../../../../common/value-object/crypto.value-object";
 import { Turma } from "../../../turmas/core/entities/turma.entity";
+import { Resposta } from "../../../questionario/core/entities/resposta.entity";
 
 @Entity("usuarios")
 export class Usuario {
@@ -39,6 +40,9 @@ export class Usuario {
     name: "turma_id",
   })
   turmaId: number;
+
+  @OneToMany(() => Resposta, (respostas) => respostas.usuario)
+  respostas: Resposta[];
 
   @JoinColumn({
     name: "turma_id",

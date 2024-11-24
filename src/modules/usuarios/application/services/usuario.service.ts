@@ -1,5 +1,4 @@
 import { ImplUsuarioRepository } from "../../adapters/database/repositories/usuario.repository";
-import { Usuario } from "../../core/entities/usuario.entity";
 import { UsuarioNotExistsError } from "../errors/usuario-not-exists.error";
 import { UsuarioRepository } from "../interfaces/usuario.repository";
 
@@ -10,6 +9,14 @@ export class UsuarioService {
     const usuario = await this.usuarioRepository.findUsuarioByEmail(email);
 
     if (!usuario) throw UsuarioNotExistsError.fromEmail(email);
+
+    return usuario;
+  }
+
+  async findById(usuarioId: number) {
+    const usuario = await this.usuarioRepository.findUsuarioById(usuarioId);
+
+    if (!usuario) throw UsuarioNotExistsError.fromId(usuarioId);
 
     return usuario;
   }

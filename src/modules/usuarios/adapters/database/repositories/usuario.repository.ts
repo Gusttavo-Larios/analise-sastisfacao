@@ -15,4 +15,11 @@ export class ImplUsuarioRepository implements UsuarioRepository {
       .where("usuario.email = :email", { email })
       .getOne();
   }
+
+  async findUsuarioById(usuarioId: number): Promise<Usuario | null> {
+    return this.usuarioRepository
+      .createQueryBuilder("usuario")
+      .where("usuario.id = :usuarioId", { usuarioId })
+      .getOne();
+  }
 }
