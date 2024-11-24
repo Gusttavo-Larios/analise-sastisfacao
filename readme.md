@@ -9,11 +9,13 @@ Esta é a documentação das rotas da API do projeto de análise de satisfação
 
 # Inciar projeto
 
-1. Copie o arquivo `.env.example`, o renomei para`.env`, e informe as credencias do banco de dados.
+1. Copie o arquivo `.env.example`, o renomei para `.env`, e informe as credencias do banco de dados.
 
 2. Dentro da pasta do projeto execute o comando `npm i` para instalar as dependências.
 
-3. Dentro da pasta do projeto execute o comando `npm run start` para inciar a aplicação.
+3. Dentro da pasta do projeto execute o comando `npm run migration:run` para executar as migrations.
+
+4. Dentro da pasta do projeto execute o comando `npm run start` para inciar a aplicação.
 
 # Rotas da API
 
