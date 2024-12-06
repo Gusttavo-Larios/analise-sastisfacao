@@ -222,3 +222,38 @@ Host: host
 - **400 Bad Request**: Se alguma regra de negócio for quebrada.
 - **422 Unprocessable Entity**: Se os parâmetros estiverem em formatos inesperador ou ausentes.
 - **500 Internal Server Error**: Se ocorrer um erro inesperado no servidor.
+
+## Rota : Obter resultado do questionário
+
+**Método HTTP**: `POST`
+
+**Endpoint**: `/api/questionario/resultado`
+
+**Descrição**: Obter resultado do questionário.
+
+### Parâmetros de Requisição (Body):
+
+```json
+{
+  "aplicacaoId": 0,
+  "turmaId": 0 // Opcional
+}
+```
+
+### Exemplo de Requisição:
+
+```http
+GET /api/questionario/resultado HTTP/1.1
+Host: host
+```
+
+### Exemplo de Resposta:
+
+É retornado um arquivo
+
+### Códigos de Resposta:
+
+- **200 OK**: Requisição bem-sucedida.
+- **400 Bad Request**: Se alguma regra de negócio for quebrada.
+- **422 Unprocessable Entity**: Se os parâmetros estiverem em formatos inesperador ou ausentes.
+- **500 Internal Server Error**: Se ocorrer um erro inesperado no servidor.

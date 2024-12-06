@@ -1,0 +1,7 @@
+export enum TipoPergunta {
+  TANGIBILIDADE = 1,
+  CONFIABILIDADE = 2,
+  RESPONSIVIDADE = 3,
+  GARANTIA = 4,
+  EMPATIA = 5,
+}
